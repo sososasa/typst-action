@@ -6,7 +6,7 @@ A GitHub Action to compile Typst documents to PDF.
 
 ```yaml
 - name: Compile Typst
-  uses: samanray/typst-action@v1
+  uses: samanray/typst-action@main
   with:
     source_file: main.typ
     output_file: main.pdf  # optional
