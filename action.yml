@@ -1,0 +1,21 @@
+name: 'Saman Ray Typst Action'
+description: 'Compile Typst documents to PDF'
+branding:
+  icon: 'file-text'
+  color: 'blue'
+
+inputs:
+  source_file:
+    description: 'The Typst source file to compile'
+    required: true
+    default: 'main.typ'
+  output_file:
+    description: 'Output PDF filename (optional)'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.source_file }}
+    - ${{ inputs.output_file }}
