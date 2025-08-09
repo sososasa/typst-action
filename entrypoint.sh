@@ -1,22 +1,18 @@
 #!/bin/bash
-
 set -e
 
 SOURCE_FILE="$1"
-OUTPUT_FILE="$2"
-
 echo "Compiling Typst document: $SOURCE_FILE"
 
-if [ -n "$OUTPUT_FILE" ]; then
-    echo "Output file specified: $OUTPUT_FILE"
-    typst compile "$SOURCE_FILE" "$OUTPUT_FILE"
-else
-    echo "Using default output filename"
-    typst compile "$SOURCE_FILE"
-fi
+# Change to the directory containing the file
+cd "$(dirname "$SOURCE_FILE")"
+FILE_NAME="$(basename "$SOURCE_FILE")"
 
-echo "✅ Compilation completed successfully!"
+echo "Working directory: $(pwd)"
+echo "Compiling: $FILE_NAME"
 
-# List generated PDF files for debugging
+typst compile "$FILE_NAME"
+
+echo "✅ Compilation completed!"
 echo "Generated files:"
 ls -la *.pdf 2>/dev/null || echo "No PDF files found"
