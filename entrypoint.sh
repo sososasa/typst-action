@@ -1,14 +1,20 @@
-#!/bin/bash
+#!/bin/sh
+
+# Exit immediately if a command exits with a non-zero status.
 set -e
 
-SOURCE_FILE="$1"
-echo "Compiling Typst document: $SOURCE_FILE"
-echo "Working directory: $(pwd)"
-echo "Available files:"
-ls -la
+# The first argument is the source file, which is required.
+SOURCE_FILE=$1
 
-compile "$SOURCE_FILE"
+# The second argument is the optional output file.
+OUTPUT_FILE=$2
 
-echo "✅ Compilation completed!"
-echo "Generated files:"
-ls -la *.pdf 2>/dev/null || echo "No PDF files found"
+# Check if an output file was provided.
+if [ -n "$OUTPUT_FILE" ]; then
+  # If an output file is specified, include it in the command.
+  typst compile "$SOURCE_FILE" "$OUTPUT_FILE"
+else
+  # If no output file is specified, just compile the source.
+  # Typst will automatically name the output PDF based on the source file name.
+  typst compile "$SOURCE_FILE"
+fi
