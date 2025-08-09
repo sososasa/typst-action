@@ -4,7 +4,7 @@
 set -e
 
 # The first argument is the source file, which is required.
-SOURCE_FILE=$1
+SOURCE_FILE="main.typ"
 
 # The second argument is the optional output file.
 OUTPUT_FILE=$2
