@@ -3,15 +3,11 @@ set -e
 
 SOURCE_FILE="$1"
 echo "Compiling Typst document: $SOURCE_FILE"
-
-# Change to the directory containing the file
-cd "$(dirname "$SOURCE_FILE")"
-FILE_NAME="$(basename "$SOURCE_FILE")"
-
 echo "Working directory: $(pwd)"
-echo "Compiling: $FILE_NAME"
+echo "Available files:"
+ls -la
 
-typst compile "$FILE_NAME"
+compile "$SOURCE_FILE"
 
 echo "✅ Compilation completed!"
 echo "Generated files:"
